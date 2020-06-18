@@ -1,0 +1,30 @@
+.input-layout {
+  margin-bottom: 2rem;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--colors-secondary);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+input {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  color: var(--colors-placeholder);
+}
+
+.search-icon {
+  padding: 1rem 0 1rem 1rem;
+  text-align: center;
+}
