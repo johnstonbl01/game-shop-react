@@ -10,7 +10,7 @@ const ProductCard = ({ product, addToCart }) => {
   const routeToProductPage = () => routeHistory.push(`/product/${product.id}`, { product });
 
   return (
-    <article>
+    <article className="product-card">
       <div className="card-content" onClick={routeToProductPage}>
         <div className="box-img-layout">
           <img src={product.url} alt={`Box for ${product.name}`} />

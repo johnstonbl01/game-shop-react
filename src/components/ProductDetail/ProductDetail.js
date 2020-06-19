@@ -1,23 +1,19 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
 import clockIcon from './clock.svg';
 import playersIcon from './users.svg';
 import starIcon from './star.svg';
 import './ProductDetail.css';
 
-const ProductDetail = ({ updateCart, cart }) => {
-  const {
-    state: { product }
-  } = useLocation();
+const ProductDetail = ({ addToCart, products }) => {
+  const { id } = useParams();
 
-  const addToCart = (product) => {
-    const productIsInCart = cart.find((prod) => prod.id === product.id);
+  const product = products.find((prod) => prod.id === id);
 
-    if (!productIsInCart) {
-      updateCart([...cart, product]);
-    }
-  };
+  if (!product) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <main className="product-detail">

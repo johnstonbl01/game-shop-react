@@ -1,4 +1,4 @@
-article {
+.product-card {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -12,11 +12,11 @@ article {
   height: 103px;
 }
 
-article:first-of-type {
+.product-card:first-of-type {
   margin-top: 0;
 }
 
-article:active {
+.product-card:active {
   transform: scale(0.98);
   transition: all 0.2s ease;
 }

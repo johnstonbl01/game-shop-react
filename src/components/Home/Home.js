@@ -1,22 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import ProductCard from '../ProductCard/ProductCard';
 import SearchInput from '../SearchInput/SearchInput';
 import './Home.css';
 
-const Home = ({ updateCart, cart }) => {
-  const products = useRef(null);
+const Home = ({ addToCart, products }) => {
   const [searchValue, setSearchValue] = useState('');
   const [shopProducts, setShopProducts] = useState([]);
   const [productListType, setProductListType] = useState('popular');
-
-  const addToCart = (product) => {
-    const productIsInCart = cart.find((prod) => prod.id === product.id);
-
-    if (!productIsInCart) {
-      updateCart([...cart, product]);
-    }
-  };
 
   const onListTypeClick = (listType) => () => {
     if (!products || !listType) {
@@ -51,17 +42,11 @@ const Home = ({ updateCart, cart }) => {
   };
 
   useEffect(() => {
-    const setGames = async () => {
-      const games = await fetchGames();
-      const popularGames = games.sort(sortByRating);
-
-      products.current = games;
-
-      return setShopProducts(popularGames);
-    };
-
-    setGames();
-  }, []);
+    if (products) {
+      const popularGames = products.sort(sortByRating);
+      setShopProducts(popularGames);
+    }
+  }, [products]);
 
   const activeListTypeStyle = { color: '#086972' };
 
@@ -91,12 +76,6 @@ const Home = ({ updateCart, cart }) => {
     </main>
   );
 };
-
-async function fetchGames() {
-  const apiResult = await fetch('https://qwbegxw1t8.execute-api.us-east-1.amazonaws.com/dev/games');
-  const games = await apiResult.json();
-  return games;
-}
 
 function sortByRating(a, b) {
   return b.rating - a.rating;
