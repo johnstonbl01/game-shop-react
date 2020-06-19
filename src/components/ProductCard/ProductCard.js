@@ -7,7 +7,7 @@ import './ProductCard.css';
 const ProductCard = ({ product, addToCart }) => {
   const routeHistory = useHistory();
 
-  const routeToProductPage = () => routeHistory.push(`/product/${product.id}`, { product });
+  const routeToProductPage = () => routeHistory.push(`/product/${product.id}`);
 
   return (
     <article className="product-card">

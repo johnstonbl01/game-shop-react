@@ -17,12 +17,12 @@ const Home = ({ addToCart, products }) => {
     setProductListType(listType);
 
     if (listType === 'popular') {
-      const popularGames = products.current.slice().sort(sortByRating);
+      const popularGames = products.slice().sort(sortByRating);
       return setShopProducts(popularGames);
     }
 
     if (listType === 'newest') {
-      const recentGames = products.current.slice().sort((a, b) => b.published - a.published);
+      const recentGames = products.slice().sort((a, b) => b.published - a.published);
       return setShopProducts(recentGames);
     }
   };
@@ -31,12 +31,12 @@ const Home = ({ addToCart, products }) => {
     setSearchValue(evt.target.value);
 
     if (evt.target.value === '') {
-      return setShopProducts(products.current);
+      return setShopProducts(products);
     }
 
-    const updatedProductList = shopProducts.filter(({ name }) =>
-      name.toLowerCase().includes(evt.target.value)
-    );
+    const updatedProductList = products
+      .slice()
+      .filter(({ name }) => name.toLowerCase().includes(evt.target.value));
 
     setShopProducts(updatedProductList);
   };

@@ -19,7 +19,7 @@ const CartFlyout = ({ show, cart = [], setShowCart, updateCart }) => {
       <header>
         <h1>cart</h1>
         <div onClick={() => setShowCart(false)}>
-          <img src={closeIcon} alt="shopping bag"></img>
+          <img src={closeIcon} alt="close cart"></img>
         </div>
       </header>
       <div className="product-container">

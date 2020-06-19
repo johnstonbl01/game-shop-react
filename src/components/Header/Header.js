@@ -14,7 +14,7 @@ const Header = ({ cart = [], setShowCart }) => {
       </Link>
       <div style={{ position: 'relative' }} onClick={() => setShowCart(true)}>
         {cart.length > 0 && <span className="items-in-cart">{cart.length}</span>}
-        <img src={shoppingBag} alt="shopping bag"></img>
+        <img src={shoppingBag} alt="shopping bag" />
       </div>
     </header>
   );
