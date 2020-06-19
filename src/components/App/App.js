@@ -21,7 +21,6 @@ const App = () => {
 
       const games = await apiResult.json();
       setProducts(games);
-      updateCart([...games]);
     };
 
     fetchProducts();
