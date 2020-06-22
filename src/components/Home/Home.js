@@ -15,16 +15,7 @@ const Home = ({ addToCart, products }) => {
     }
 
     setProductListType(listType);
-
-    if (listType === 'popular') {
-      const popularGames = products.slice().sort(sortByRating);
-      return setShopProducts(popularGames);
-    }
-
-    if (listType === 'newest') {
-      const recentGames = products.slice().sort((a, b) => b.published - a.published);
-      return setShopProducts(recentGames);
-    }
+    setShopProducts(filterProductsByListType(listType, products));
   };
 
   const onInputChange = (evt) => {
@@ -34,9 +25,13 @@ const Home = ({ addToCart, products }) => {
       return setShopProducts(products);
     }
 
+    const sortFn =
+      productListType === 'newest' ? (a, b) => b.published - a.published : sortByRating;
+
     const updatedProductList = products
       .slice()
-      .filter(({ name }) => name.toLowerCase().includes(evt.target.value));
+      .filter(({ name }) => name.toLowerCase().includes(evt.target.value))
+      .sort(sortFn);
 
     setShopProducts(updatedProductList);
   };
@@ -79,6 +74,12 @@ const Home = ({ addToCart, products }) => {
 
 function sortByRating(a, b) {
   return b.rating - a.rating;
+}
+
+function filterProductsByListType(listType, products) {
+  const sortFn = listType === 'newest' ? (a, b) => b.published - a.published : sortByRating;
+
+  return products.slice().sort(sortFn);
 }
 
 export default Home;
